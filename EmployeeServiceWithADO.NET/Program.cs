@@ -11,7 +11,7 @@ public class Program
 
         while (check)
         {
-            Console.WriteLine("1. To Insert the Data in Data Base \n2.Retrieve All Employee Data from the Data Base\n3. Update Employee Salary\n4. Deleting the Recod from the EmployeeData base");
+            Console.WriteLine("1. To Insert the Data in Data Base \n2.Retrieve All Employee Data from the Data Base\n3. Update Employee Salary\n4. Deleting the Recod from the EmployeeData base\n5. Display Record the Given Joinning data Range\n");
             Console.WriteLine("###### Enter the Above Option To Perform The CRUD Operation ##########");
             int option = Convert.ToInt32(Console.ReadLine());
             switch (option)
@@ -62,6 +62,21 @@ public class Program
                             Console.WriteLine(empId + "is Not present int he Data base");
                         }
                     }
+                    break;
+                case 5:
+                    List<EmpModel> dateList = payrollService.GetAllEmployees();
+                    Console.WriteLine("##########->Please Enter the Date<-##########");
+                    DateTime dateTime = Convert.ToDateTime(Console.ReadLine());
+                    payrollService.RetrieveByDate(dateTime);
+                    foreach (EmpModel data in dateList)
+                    {
+                        if (data.StartDate.Equals(dateTime))
+                        {
+                            Console.WriteLine(data.Id + " " + data.Name + " " + data.Salary + " " + data.Gender + " " + data.StartDate + " " + data.Address + " " + data.ContactNumber + " " + data.Pay + " " + data.Deduction + " " + data.TaxablePay + " " + data.IncomeTax + " " + data.NetPay);
+
+                        }
+                    }
+                  
                     break;
                 case 0:
                     check= false;
