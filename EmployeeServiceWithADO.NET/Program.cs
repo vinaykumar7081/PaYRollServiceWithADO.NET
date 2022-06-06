@@ -11,7 +11,7 @@ public class Program
 
         while (check)
         {
-            Console.WriteLine("1. To Insert the Data in Data Base \n2.Retrieve All Employee Data from the Data Base\n");
+            Console.WriteLine("1. To Insert the Data in Data Base \n2.Retrieve All Employee Data from the Data Base\n3. Update Employee Salary");
             Console.WriteLine("###### Enter the Above Option To Perform The CRUD Operation ##########");
             int option = Convert.ToInt32(Console.ReadLine());
             switch (option)
@@ -38,6 +38,12 @@ public class Program
                     {
                         Console.WriteLine(data.Id + " " + data.Name + " " + data.Salary + " " + data.Gender + " " + data.StartDate + " " + data.Address + " " + data.ContactNumber + " " + data.Pay + " " + data.Deduction + " " + data.TaxablePay + " " + data.IncomeTax + " " + data.NetPay);
                     }
+                    break;
+                case 3:
+                    EmpModel model=new EmpModel();
+                    model.Id = 104;
+                    model.Salary = 3000000;
+                    payrollService.UpdateEmployee(model);
                     break;
                 case 0:
                     check= false;

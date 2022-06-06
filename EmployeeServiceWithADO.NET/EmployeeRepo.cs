@@ -98,6 +98,38 @@ namespace EmployeeServiceWithADO.NET
             }
             return EmpList;
         }
+        //To Update Employee details    
+        public bool UpdateEmployee(EmpModel obj)
+        {
+            connection();
+            SqlCommand com = new SqlCommand("spUpdateEmployeeDetails", con);
 
+            com.CommandType = CommandType.StoredProcedure;
+            com.Parameters.AddWithValue("@Id", obj.Id);
+           // com.Parameters.AddWithValue("@Name", obj.Name);
+            com.Parameters.AddWithValue("@Salary", obj.Salary);
+            //com.Parameters.AddWithValue("@StartDate", obj.StartDate);
+            //com.Parameters.AddWithValue("@Gender", obj.Gender);
+            //com.Parameters.AddWithValue("@ContactNumber", obj.StartDate);
+            //com.Parameters.AddWithValue("@Address", obj.Address);
+            //com.Parameters.AddWithValue("@Pay", obj.Pay);
+            //com.Parameters.AddWithValue("@Deduction", obj.Deduction);
+            //com.Parameters.AddWithValue("@TaxablePay", obj.TaxablePay);
+            //com.Parameters.AddWithValue("@Deduction", obj.Deduction);
+            //com.Parameters.AddWithValue("@TaxablePay", obj.TaxablePay);
+            //com.Parameters.AddWithValue("@IncomeTax", obj.IncomeTax);
+            //com.Parameters.AddWithValue("@NetPay", obj.NetPay);
+            con.Open();
+            int i = com.ExecuteNonQuery();
+            con.Close();
+            if (i >= 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
