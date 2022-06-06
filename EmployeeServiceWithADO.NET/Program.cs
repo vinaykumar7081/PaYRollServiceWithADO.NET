@@ -11,7 +11,7 @@ public class Program
 
         while (check)
         {
-            Console.WriteLine("1. To Insert the Data in Data Base \n2.Retrieve All Employee Data from the Data Base\n3. Update Employee Salary");
+            Console.WriteLine("1. To Insert the Data in Data Base \n2.Retrieve All Employee Data from the Data Base\n3. Update Employee Salary\n4. Deleting the Recod from the EmployeeData base");
             Console.WriteLine("###### Enter the Above Option To Perform The CRUD Operation ##########");
             int option = Convert.ToInt32(Console.ReadLine());
             switch (option)
@@ -44,6 +44,24 @@ public class Program
                     model.Id = 104;
                     model.Salary = 3000000;
                     payrollService.UpdateEmployee(model);
+                    break;
+                case 4:
+                    EmpModel emp = new EmpModel();
+                    List<EmpModel> eList = payrollService.GetAllEmployees();
+                    Console.WriteLine("Enter the Employee Id to Delete the Record  From the Table");
+                    int empId=Convert.ToInt32(Console.ReadLine());
+                    foreach (EmpModel data in eList)
+                    {
+                        if (data.Id == empId)
+                        {
+                            payrollService.DeleteEmployee(empId);
+                            Console.WriteLine("Record Successfully Deleted");
+                        }
+                        else
+                        {
+                            Console.WriteLine(empId + "is Not present int he Data base");
+                        }
+                    }
                     break;
                 case 0:
                     check= false;
